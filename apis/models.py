@@ -16,6 +16,7 @@ class User(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
+    category = models.CharField(max_length=100)
     photo_urls = models.JSONField(default=list, blank=True)  # list of photo urls
     ratings = models.FloatField(default=0)
     description = models.TextField(blank=True, null=True)
