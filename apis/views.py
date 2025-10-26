@@ -2,11 +2,8 @@ from rest_framework import generics
 from .models import User, Product
 from .serializers import UserSerializer, ProductSerializer
 
-# ===============================
-# USER API (Read Only)
-# ===============================
+
 class UserListAPI(generics.ListAPIView):
-    """Only GET all users with ?limit support"""
     serializer_class = UserSerializer
 
     def get_queryset(self):
@@ -18,16 +15,12 @@ class UserListAPI(generics.ListAPIView):
 
 
 class UserDetailAPI(generics.RetrieveAPIView):
-    """Only GET single user"""
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-# ===============================
-# PRODUCT API (Full CRUD)
-# ===============================
-class ProductListCreateAPI(generics.ListCreateAPIView):
-    """GET list and POST create with ?limit support"""
+
+class ProductListAPI(generics.ListAPIView):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
@@ -38,7 +31,6 @@ class ProductListCreateAPI(generics.ListCreateAPIView):
         return queryset
 
 
-class ProductDetailAPI(generics.RetrieveUpdateDestroyAPIView):
-    """GET single, PUT/PATCH update, DELETE"""
+class ProductDetailAPI(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
